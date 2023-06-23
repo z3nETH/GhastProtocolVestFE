@@ -62,25 +62,35 @@ const Vest = () => {
     setIsOpen(true);
   }
   return (
-    <div className="inline-flex justify-center mt-16">
-      <div className="w-80 h-auto py-6 px-8 border-2 border-red-500 rounded-lg backdrop-blur-lg lg:py-12 lg:px-12 lg:w-96">
-        <h2 className="text-center text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-400 ">
+    <div className=" group inline-flex justify-center mt-16">
+      <div className="ease-in-out duration-150 w-80 h-auto py-6 px-8 border-t-2 border-l-2 border-red-600 shadow-[3px_3px_3px_3px] group-hover:shadow-[4px_4px_4px_4px] group-hover:shadow-red-600 shadow-red-600 rounded-lg backdrop-blur-lg lg:py-12 lg:px-12 lg:w-96">
+        <h2 className="text-center text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-400 mb-2 tracking-wider">
           Vest.
         </h2>
-        <p className="text-center text-slate-400 ml-1 mt-2">
+        <p className="text-center text-white ml-1 mt-2 text-lg">
           Vest your{" "}
           <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-600">
-            esGHA
+            esGHA {""}
           </span>
-          .
+          back into {""}
+          <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-600">
+            GHA
+          </span>
+        </p>
+        <p className="text-center text-sm  text-white ml-1 mt-2">
+          Vesting lasts{" "}
+          <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-600">
+            200 days
+          </span>
+          !
         </p>
         <button
-          className="flex ease-in-out duration-500 w-fit bg-gradient-to-r from-red-600 to-purple-400 text-white mx-auto mt-5 py-1 px-5 rounded-md hover:opacity-80"
+          className="flex ease-in-out duration-150 w-fit bg-gradient-to-r from-red-700 to-orange-600 text-white mx-auto mt-5 py-2 px-10 tracking-widest font-semibold rounded-md hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[3px_3px_3px_3px] hover:shadow-orange-800"
           onClick={openModal}
         >
           Vest
         </button>
-        <p className="text-center text-slate-400 ml-1 mt-4 text-sm">
+        <p className="text-center text-slate-300 ml-1 mt-4 text-sm">
           Your current balance: {balance !== 0 ? balance : 0} {""}
           <span className=" font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-600">
             esGHA
@@ -117,7 +127,7 @@ const Vest = () => {
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-black p-6 text-center align-middle shadow-xl transition-all border-4 border-red-700">
                   <Dialog.Title
                     as="h3"
-                    className="text-2xl font-semibold tracking-wider leading-6 text-orange-500"
+                    className="text-3xl font-semibold tracking-wider leading-6 text-red-500"
                   >
                     Are you sure?
                   </Dialog.Title>
@@ -131,13 +141,13 @@ const Vest = () => {
                     </a>
                   </p>
                   <button
-                    className="ease-in-out duration-300 h-fit px-5 py-2 my-auto bg-transparent text-white text-base bg-gradient-to-r from-orange-500 to-purple-700 rounded-lg hover:bg-orange-950 hover:rounded-lg"
+                    className="ease-in-out duration-300 h-fit px-5 py-2 my-auto bg-transparent text-white text-base bg-gradient-to-r from-red-700 to-orange-600 rounded-lg hover:opacity-90 hover:rounded-lg"
                     type="submit"
                     onClick={vestAll}
                   >
                     Vest All
                   </button>
-                  <p className="text-left text-slate-400 ml-1 mt-4 text-sm">
+                  <p className="text-left text-slate-300 ml-1 mt-4 text-sm">
                     Current balance: {balance !== 0 ? balance : 0} {""}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-600">
                       esGHA

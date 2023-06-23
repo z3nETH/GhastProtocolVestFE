@@ -15,6 +15,7 @@ import {
   esGHAcontractABI,
 } from "../contracts/contractAddressesEsGHA";
 import { formatUnits, parseEther } from "ethers/lib/utils";
+import { toast } from "react-hot-toast";
 
 const Convert = () => {
   const address = useAddress();
@@ -34,10 +35,11 @@ const Convert = () => {
         await approve({ args: [esGHAcontractAddress, 1] });
         document.querySelector(".modal").style.display = "flex";
         document.querySelector(".approveBtn").style.display = "none";
-        setApproveBtn("Approved");
-        console.log("Approved");
+        toast.success("Approved!");
+        setApproveBtn("Approve");
       } catch (err) {
-        setApproveBtn("Something went wrong, try again!");
+        setApproveBtn("Approve");
+        toast.error("Something went wrong!");
         console.error("contract call failure", err);
       }
     }
@@ -72,8 +74,10 @@ const Convert = () => {
       try {
         const data = await lock({ args: [parseEther(balance)] });
         closeModal();
+        toast.success("Locked!");
         console.info("contract call successs", data);
       } catch (err) {
+        toast.error("Something went wrong!");
         console.error("contract call failure", err);
       }
     }
@@ -86,35 +90,42 @@ const Convert = () => {
     setIsOpen(true);
   }
   return (
-    <div className="inline-flex justify-center mt-16">
-      <div className="w-80 h-auto py-6 px-8 border-2 border-purple-600 rounded-lg backdrop-blur-lg lg:py-12 lg:px-12 lg:w-96">
-        <h2 className=" text-center text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-purple-500 ">
+    <div className="group inline-flex justify-center mt-16">
+      <div className="ease-in-out duration-300 w-80 h-auto py-6 px-8 border-t-2 border-l-2 border-purple-600 shadow-[3px_3px_3px_3px] group-hover:shadow-[4px_4px_4px_4px] group-hover:shadow-purple-600 shadow-purple-600 rounded-lg backdrop-blur-lg lg:py-12 lg:px-12 lg:w-96">
+        <h2 className=" text-center text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-purple-500 mb-2 tracking-wider">
           Lock.
         </h2>
-        <p className="text-center text-slate-400 ml-1 mt-2">
-          Lock your{" "}
+        <p className="text-center text-white ml-1 mt-4 text-lg ">
+          Get up to{" "}
+          <span className="font-extrabold text-xl text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-purple-600">
+            4x
+          </span>{" "}
+          your regular APR
+        </p>
+        <p className="text-center text-sm  text-white ml-1 mt-2">
+          by locking your{" "}
           <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-purple-600">
             GHA{" "}
           </span>
-          and get{" "}
+          into{" "}
           <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-600">
             esGHA
           </span>
           .
         </p>
         <button
-          className="modal ease-in-out duration-500 w-fit bg-gradient-to-r from-blue-800 to-purple-600 text-white mx-auto mt-5 py-1 px-5 rounded-md hidden hover:opacity-80"
+          className="modal ease-in-out duration-150 w-fit bg-gradient-to-r from-blue-800 to-purple-600 text-white mx-auto mt-5 py-2 px-10 tracking-widest font-semibold rounded-md hidden hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[3px_3px_3px_3px] hover:shadow-purple-900"
           onClick={openModal}
         >
           {lockBtn}
         </button>
         <button
-          className="approveBtn flex ease-in-out duration-500 w-fit bg-gradient-to-r from-blue-800 to-purple-600 text-white mx-auto mt-5 py-1 px-5 rounded-md hover:opacity-80"
+          className="approveBtn flex ease-in-out duration-150 w-fit bg-gradient-to-r from-blue-800 to-purple-600 text-white mx-auto mt-5 py-2 px-10 tracking-widest font-semibold rounded-md hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[3px_3px_3px_3px] hover:shadow-purple-900"
           onClick={getApproval}
         >
           {approveBtn}
         </button>
-        <p className="text-center text-slate-400 ml-1 mt-4 text-sm">
+        <p className="text-center text-slate-300 ml-1 mt-4 text-sm">
           Your current balance: {balance}
           {""}
           <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-purple-600">

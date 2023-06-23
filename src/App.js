@@ -3,12 +3,20 @@ import "./styles/Home.css";
 import Vest from "../src/components/vest";
 import Convert from "./components/convert";
 import logo from "./images/ghastLogo.svg";
+import { Toaster } from "react-hot-toast";
+
 export default function Home() {
   return (
     <div className=" py-5 h-screen mb-5 lg:px-10">
       <header className="w-auto mt-3 pb-3 px-3 flex border-b-[1px] border-red-500">
-        <a href="https://ghastprotocol.com/" className="mr-auto">
+        <a
+          href="https://ghastprotocol.com/"
+          className="mr-auto flex align-middle"
+        >
           <img src={logo} alt="logo" />
+          <h1 className="font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-b from-red-600 to-orange-400 my-auto ml-3">
+            GHA
+          </h1>
         </a>
         <div className="">
           <ConnectWallet />
@@ -54,6 +62,7 @@ export default function Home() {
           sure to share with me any concerns/feedbacks!
         </p>
       </footer>
+      <Toaster />
     </div>
   );
 }
