@@ -1,11 +1,12 @@
-import { ConnectWallet } from "@thirdweb-dev/react";
+import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
 import "./styles/Home.css";
-import Vest from "../src/components/vest";
-import Convert from "./components/convert";
 import logo from "./images/ghastLogo.svg";
 import { Toaster } from "react-hot-toast";
+import Main from "./components/main";
+import Connect from "./components/connect";
 
 export default function Home() {
+  const address = useAddress();
   return (
     <div className=" py-5 h-screen mb-5 lg:px-10">
       <header className="w-auto mt-3 pb-3 px-3 flex border-b-[1px] border-red-500">
@@ -19,22 +20,10 @@ export default function Home() {
           </h1>
         </a>
         <div className="">
-          <ConnectWallet />
+          <ConnectWallet btnTitle="Connect" />
         </div>
       </header>
-      <main className="mt-20">
-        <h1 className="text-center text-white font-medium tracking-wide text-6xl">
-          Boost your{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-600">
-            rewards
-          </span>
-          .
-        </h1>
-        <div className="flex flex-wrap justify-center mx-auto gap-0 lg:flex-nowrap lg:gap-16">
-          <Convert />
-          <Vest />
-        </div>
-      </main>
+      {address ? <Main /> : <Connect />}
       <div className="border-t-2 border-red-500 mt-24 mx-20 lg:mx-96"></div>
       <footer className=" w-auto mx-auto mb-5">
         <h3 className="mt-5 text-center text-slate-300 ml-1">DISCLAIMER:</h3>
